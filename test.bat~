@@ -24,7 +24,7 @@ echo Running JUnit...
 java -cp libs\junit-4.10.jar;test\;. org.junit.runner.JUnitCore cs414.a%assignmentNumber%.%eID%.TestAll > results.txt
 
 echo Results:
-type results.txt
+cat results.txt
 
 echo Cleaning Up...
 del results.txt
