@@ -17,30 +17,27 @@ if [[ ! -e "assignments/$archive" ]] ; then
   exit
 fi
 
-exit
-
 echo "Using $archive";
 
 mkdir -p test
 cp assignments/$archive test/
-chdir test
+cd test
 echo "Extracting .jar"
 jar xvf $archive
-chdir ..
+cd ..
 
 echo "Compiling"
-javac -cp 'libs;tests/cs414/a$assignmentNumber/$eID/' \
-  tests/cs414/a$assignmentNumber/$eID/*.java
+cd test/cs414/a$assignmentNumber/$eID/
+javac -cp ../../../../libs/junit-4.10.jar *.java
+cd ../../../../
 
 echo "Running JUnit..."
-java -cp 'libs;tests/cs414/a$assignmentNumber/$eID/' \
-  org.junit.runner.JUnitCore \
-  cs414.a$assignmentNumber.$eID.TestAll \
-  > results.txt
+export CLASSPATH=libs/junit-4.10.jar:test
+java org.junit.runner.JUnitCore cs414.a$assignmentNumber.$eID.TestAll > results.txt
 
 echo "Results:"
 cat results.txt
 
 echo "Cleanup..."
-rm -rf test/cs414
+rm -rf test/
 

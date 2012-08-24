@@ -27,7 +27,6 @@ echo Results:
 type results.txt
 
 echo Cleaning Up...
-del results.txt
 rmdir /S/Q test
 
 echo Done
